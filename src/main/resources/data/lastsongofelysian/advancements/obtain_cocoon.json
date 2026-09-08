@@ -1,0 +1,32 @@
+{
+  "parent": "lastsongofelysian:root",
+  "display": {
+    "icon": {
+      "item": "lastsongofelysian:cocoon_of_finality"
+    },
+    "title": {
+      "text": "梦开始的地方"
+    },
+    "description": {
+      "text": "获得终焉之茧"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_cocoon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lastsongofelysian:cocoon_of_finality"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

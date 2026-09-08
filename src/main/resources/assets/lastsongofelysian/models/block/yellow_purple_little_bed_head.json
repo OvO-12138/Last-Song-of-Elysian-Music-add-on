@@ -1,0 +1,72 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "fabric": "lastsongofelysian:block/yellow_purple_wool",
+    "wood": "minecraft:block/oak_planks",
+    "pillow": "minecraft:block/white_wool",
+    "particle": "lastsongofelysian:block/yellow_purple_wool"
+  },
+  "elements": [
+    {
+      "from": [0, 3, 0],
+      "to": [16, 4, 16],
+      "faces": {
+        "down": {"texture": "#wood"},
+        "up": {"texture": "#wood"},
+        "north": {"texture": "#wood"},
+        "south": {"texture": "#wood"},
+        "west": {"texture": "#wood"},
+        "east": {"texture": "#wood"}
+      }
+    },
+    {
+      "from": [0, 4, 0],
+      "to": [16, 9, 16],
+      "faces": {
+        "down": {"texture": "#fabric"},
+        "up": {"texture": "#fabric"},
+        "north": {"texture": "#fabric"},
+        "south": {"texture": "#fabric"},
+        "west": {"texture": "#fabric"},
+        "east": {"texture": "#fabric"}
+      }
+    },
+    {
+      "from": [1, 9, 1],
+      "to": [15, 11, 7],
+      "faces": {
+        "down": {"texture": "#pillow"},
+        "up": {"texture": "#pillow"},
+        "north": {"texture": "#pillow"},
+        "south": {"texture": "#pillow"},
+        "west": {"texture": "#pillow"},
+        "east": {"texture": "#pillow"}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [3, 4, 3],
+      "faces": {
+        "down": {"texture": "#wood"},
+        "up": {"texture": "#wood"},
+        "north": {"texture": "#wood"},
+        "south": {"texture": "#wood"},
+        "west": {"texture": "#wood"},
+        "east": {"texture": "#wood"}
+      }
+    },
+    {
+      "from": [13, 0, 0],
+      "to": [16, 4, 3],
+      "faces": {
+        "down": {"texture": "#wood"},
+        "up": {"texture": "#wood"},
+        "north": {"texture": "#wood"},
+        "south": {"texture": "#wood"},
+        "west": {"texture": "#wood"},
+        "east": {"texture": "#wood"}
+      }
+    }
+  ]
+}

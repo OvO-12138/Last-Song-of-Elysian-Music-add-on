@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lastsongofelysian:item/proof_of_good_and_evil"
+  }
+}

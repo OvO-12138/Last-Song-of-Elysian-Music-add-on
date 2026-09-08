@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "lastsongofelysian:compressed_biological_residue"
+    }
+  },
+  "result": {
+    "item": "lastsongofelysian:double_compressed_biological_residue",
+    "count": 1
+  }
+}

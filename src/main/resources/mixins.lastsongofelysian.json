@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.he.lastsongofelysian.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.lastsongofelysian.refmap.json",
+  "mixins": [
+    "AbstractFurnaceBlockEntityAccessor",
+    "MobEffectInstanceAccessor",
+    "RangedAttributeAccessor",
+    "AnvilMenuMixin",
+    "EnchantmentMenuMixin",
+    "CraftingOutputSlotMixin"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RYG",
+    "KSB",
+    "WPF"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:red_dye"
+    },
+    "Y": {
+      "item": "lastsongofelysian:yellow_purple_dye"
+    },
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "K": {
+      "item": "minecraft:black_dye"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "W": {
+      "item": "minecraft:white_dye"
+    },
+    "P": {
+      "item": "minecraft:pink_dye"
+    },
+    "F": {
+      "item": "minecraft:gray_dye"
+    }
+  },
+  "result": {
+    "item": "lastsongofelysian:paintbrush",
+    "count": 1
+  }
+}

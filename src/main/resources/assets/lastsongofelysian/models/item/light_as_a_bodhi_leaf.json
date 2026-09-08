@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lastsongofelysian:item/light_as_a_bodhi_leaf"
+  }
+}

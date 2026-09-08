@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "lastsongofelysian:block/yellow_purple_wool"
+  }
+}

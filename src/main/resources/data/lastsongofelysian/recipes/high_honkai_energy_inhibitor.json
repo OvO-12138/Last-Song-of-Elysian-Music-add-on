@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DGG",
+    "GEG",
+    "GGR"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "E": {
+      "item": "lastsongofelysian:double_compressed_biological_residue"
+    },
+    "R": {
+      "item": "minecraft:end_rod"
+    }
+  },
+  "result": {
+    "item": "lastsongofelysian:high_honkai_energy_inhibitor",
+    "count": 1
+  }
+}

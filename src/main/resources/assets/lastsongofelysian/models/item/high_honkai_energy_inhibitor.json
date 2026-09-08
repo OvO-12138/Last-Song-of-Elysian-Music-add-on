@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lastsongofelysian:item/high_honkai_energy_inhibitor"
+  }
+}

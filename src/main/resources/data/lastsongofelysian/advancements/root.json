@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "lastsongofelysian:image_19"
+    },
+    "title": {
+      "text": "乐土终曲"
+    },
+    "description": {
+      "text": "去创造他们没能拥有的未来吧"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/end.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "joined_world": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

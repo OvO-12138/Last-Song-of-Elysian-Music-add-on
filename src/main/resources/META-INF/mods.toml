@@ -1,0 +1,45 @@
+
+modLoader="javafml"
+
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+
+[[mods]]
+
+modId="lastsongofelysian"
+version="${mod_version}"
+displayName="乐土终曲（Last Song of Elysian）"
+
+authors="${mod_authors}"
+
+
+description='''
+欢迎，高洁而纯真的灵魂。你为探寻过去而来，但真相的基石早已被过去的尘土掩埋。这是末世最后的乐土，亦是逐火者们命定的终墓。而存在于此的，也不过是些尚且还算有趣的故事罢了。关于那久远的过去。关于那十三位未能成为英雄之人的故事。
+
+「空梦」「浮生」「繁星」「无限」「旭光」「刹那」「天慧」「鏖灭」「螺旋」「黄金」「戒律」「救世」
+
+集齐十二刻印，获得「■■」之印，见证他们的结局。
+
+“但来访者，你的道路仍将延续，不是吗？那么，就听凭心意前进吧。沿着脚下的足迹，去见证那段逐火的征程。最后，跨越逝者们的终墓——去创造，「我们」所未能迎接的未来。”
+
+-粉色妖精小姐
+'''
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="curios"
+mandatory=true
+versionRange="[5.0,)"
+ordering="AFTER"
+side="BOTH"

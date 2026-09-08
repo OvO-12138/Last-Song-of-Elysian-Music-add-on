@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lastsongofelysian:item/falling_in_past_light"
+  }
+}

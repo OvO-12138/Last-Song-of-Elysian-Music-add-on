@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#lastsongofelysian:yellow_purple_little_fish_cold_oceans",
+  "spawners": {
+    "type": "lastsongofelysian:yellow_purple_little_fish",
+    "weight": 15,
+    "minCount": 1,
+    "maxCount": 5
+  }
+}

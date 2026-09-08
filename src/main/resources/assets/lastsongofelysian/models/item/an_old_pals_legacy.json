@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lastsongofelysian:item/an_old_pals_legacy"
+  }
+}
