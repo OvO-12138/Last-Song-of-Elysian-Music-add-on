@@ -1,0 +1,130 @@
+{
+  "da_capo": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/da_capo",
+        "stream": true
+      }
+    ]
+  },
+  "rubia": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/rubia",
+        "stream": true
+      }
+    ]
+  },
+  "befall": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/befall",
+        "stream": true
+      }
+    ]
+  },
+  "dual_ego": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/dual_ego",
+        "stream": true
+      }
+    ]
+  },
+  "nightglow": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/nightglow",
+        "stream": true
+      }
+    ]
+  },
+  "starfall": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/starfall",
+        "stream": true
+      }
+    ]
+  },
+  "true": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/true",
+        "stream": true
+      }
+    ]
+  },
+  "phi2": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/phi2",
+        "stream": true
+      }
+    ]
+  },
+  "honkai_world_diva": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/honkai_world_diva",
+        "stream": true
+      }
+    ]
+  },
+  "millennium_feather": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/millennium_feather",
+        "stream": true
+      }
+    ]
+  },
+  "cyberangel": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/cyberangel",
+        "stream": true
+      }
+    ]
+  },
+  "moon_halo": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/moon_halo",
+        "stream": true
+      }
+    ]
+  },
+  "regression": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/regression",
+        "stream": true
+      }
+    ]
+  },
+  "star_and_disappearance_day": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/star_and_disappearance_day",
+        "stream": true
+      }
+    ]
+  },
+  "oracle": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/oracle",
+        "stream": true
+      }
+    ]
+  },
+  "oaths": {
+    "sounds": [
+      {
+        "name": "lastsongofelysian_music_add_on:radio/oaths",
+        "stream": true
+      }
+    ]
+  }
+}

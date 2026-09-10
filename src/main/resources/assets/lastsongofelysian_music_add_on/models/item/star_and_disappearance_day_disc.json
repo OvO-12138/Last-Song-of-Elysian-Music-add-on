@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lastsongofelysian_music_add_on:item/star_and_disappearance_day_disc"
+  }
+}

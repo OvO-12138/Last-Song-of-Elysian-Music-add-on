@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "lastsongofelysian:item/rainbow_of_absence"
-  }
-}
