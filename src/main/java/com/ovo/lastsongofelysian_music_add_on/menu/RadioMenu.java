@@ -37,7 +37,7 @@ public final class RadioMenu extends AbstractContainerMenu {
         this.player = inventory.player;
         this.hand = hand;
 
-        addSlot(new Slot(discInput, 0, 43, 96) {
+        addSlot(new Slot(discInput, 0, 25, 83) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() instanceof RadioSongDiscItem;
@@ -52,12 +52,12 @@ public final class RadioMenu extends AbstractContainerMenu {
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
                 addSlot(new Slot(inventory, column + row * 9 + 9,
-                        99 + column * 18, 202 + row * 18));
+                        48 + column * 18, 191 + row * 18));
             }
         }
 
         for (int column = 0; column < 9; column++) {
-            addSlot(new Slot(inventory, column, 99 + column * 18, 260));
+            addSlot(new Slot(inventory, column, 48 + column * 18, 249));
         }
     }
 

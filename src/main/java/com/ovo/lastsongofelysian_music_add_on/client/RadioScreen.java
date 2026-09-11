@@ -17,21 +17,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
-    private static final int WIDTH = 360;
-    private static final int HEIGHT = 284;
+    private static final int WIDTH = 256;
+    private static final int HEIGHT = 270;
     
-    private static final int LIST_X = 100;
-    private static final int LIST_Y = 42;
-    private static final int LIST_W = 240;
+    private static final int LIST_X = 68;
+    private static final int LIST_Y = 30;
+    private static final int LIST_W = 180;
     private static final int ROW_H = 18;
-    private static final int MAX_ROWS = 6;
+    private static final int MAX_ROWS = 5;
     
-    private static final int BTN_Y1 = 155;
-    private static final int BTN_Y2 = 180;
-    private static final int TEXT = 0xFFF5EEFF;
-    private static final int TEXT_DIM = 0xFFBDB0CA;
-    private static final int ACCENT = 0xFFE4C6FF;
-    private static final int GOLD = 0xFFFFD77A;
+    private static final int BTN_Y1 = 124;
+    private static final int BTN_Y2 = 149;
+
+    // Vanilla container palette (the same greys used by chest/furnace screens).
+    private static final int PANEL = 0xFFC6C6C6;
+    private static final int PANEL_LIGHT = 0xFFFFFFFF;
+    private static final int PANEL_SHADOW = 0xFF555555;
+    private static final int SLOT = 0xFF8B8B8B;
+    private static final int TEXT = 0xFF404040;
+    private static final int TEXT_DIM = 0xFF606060;
+    private static final int PLAYING = 0xFF208020;
     
     private int selected = 0;
     private int scroll = 0;
@@ -60,43 +65,49 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
         int bx = leftPos + LIST_X;
         int by = topPos + BTN_Y1;
         
-        btnPlay = addRenderableWidget(Button.builder(Component.literal("▶"), b -> playSelected())
-            .bounds(bx, by, 28, 20).build());
+        btnPlay = addRenderableWidget(Button.builder(
+                Component.translatable("gui.lastsongofelysian_music_add_on.play"), b -> playSelected())
+            .bounds(bx, by, 42, 20).build());
             
-        btnStop = addRenderableWidget(Button.builder(Component.literal("■"), b -> RadioPlayback.stop())
-            .bounds(bx + 32, by, 28, 20).build());
+        btnStop = addRenderableWidget(Button.builder(
+                Component.translatable("gui.lastsongofelysian_music_add_on.stop"), b -> RadioPlayback.stop())
+            .bounds(bx + 46, by, 42, 20).build());
             
-        btnPrev = addRenderableWidget(Button.builder(Component.literal("⏮"), b -> prevSong())
-            .bounds(bx + 64, by, 28, 20).build());
+        btnPrev = addRenderableWidget(Button.builder(
+                Component.translatable("gui.lastsongofelysian_music_add_on.previous"), b -> prevSong())
+            .bounds(bx + 92, by, 42, 20).build());
             
-        btnNext = addRenderableWidget(Button.builder(Component.literal("⏭"), b -> nextSong())
-            .bounds(bx + 96, by, 28, 20).build());
+        btnNext = addRenderableWidget(Button.builder(
+                Component.translatable("gui.lastsongofelysian_music_add_on.next"), b -> nextSong())
+            .bounds(bx + 138, by, 42, 20).build());
             
-        btnImport = addRenderableWidget(Button.builder(Component.literal("＋ 导入音乐"), b -> openImporter())
-            .bounds(bx + 132, by, 108, 20).build());
+        btnImport = addRenderableWidget(Button.builder(
+                Component.translatable("gui.lastsongofelysian_music_add_on.import"), b -> openImporter())
+            .bounds(leftPos + 8, by, 54, 20).build());
 
-        btnRecord = addRenderableWidget(Button.builder(Component.literal("录入唱片"), b -> recordDisc())
-                .bounds(leftPos + 20, topPos + 119, 64, 20).build());
+        btnRecord = addRenderableWidget(Button.builder(
+                Component.translatable("gui.lastsongofelysian_music_add_on.record"), b -> recordDisc())
+                .bounds(leftPos + 8, topPos + 104, 54, 16).build());
 
         int mx = leftPos + LIST_X;
         int my = topPos + BTN_Y2;
         
         btnSeq = addRenderableWidget(Button.builder(
-                Component.literal("顺序"),
+                Component.translatable("gui.lastsongofelysian_music_add_on.repeat_all"),
                 b -> setMode(RadioPlayback.Mode.LOOP_ALL))
-            .bounds(mx, my, 76, 18).build());
+            .bounds(mx, my, 58, 20).build());
             
         btnRand = addRenderableWidget(Button.builder(
-                Component.literal("随机"),
+                Component.translatable("gui.lastsongofelysian_music_add_on.shuffle"),
                 b -> setMode(RadioPlayback.Mode.SHUFFLE))
-            .bounds(mx + 82, my, 76, 18).build());
+            .bounds(mx + 61, my, 58, 20).build());
             
         btnLoop = addRenderableWidget(Button.builder(
-                Component.literal("单曲循环"), 
+                Component.translatable("gui.lastsongofelysian_music_add_on.repeat_one"),
                 b -> setMode(RadioPlayback.Mode.LOOP_ONE))
-            .bounds(mx + 164, my, 76, 18).build());
+            .bounds(mx + 122, my, 58, 20).build());
 
-        addRenderableWidget(new VolumeSlider(leftPos + 14, topPos + 166, 76, 20));
+        addRenderableWidget(new VolumeSlider(leftPos + 8, topPos + BTN_Y2, 54, 20));
         
         updatePlaylist();
         btnRecord.active = canRecordCurrentDisc();
@@ -151,13 +162,19 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
     }
     
     private void refreshLabels() {
-        if (btnSeq != null) btnSeq.setMessage(getModeLabel("列表循环", RadioPlayback.Mode.LOOP_ALL));
-        if (btnRand != null) btnRand.setMessage(getModeLabel("随机播放", RadioPlayback.Mode.SHUFFLE));
-        if (btnLoop != null) btnLoop.setMessage(getModeLabel("单曲循环", RadioPlayback.Mode.LOOP_ONE));
+        if (btnSeq != null) btnSeq.setMessage(getModeLabel(
+                "gui.lastsongofelysian_music_add_on.repeat_all", RadioPlayback.Mode.LOOP_ALL));
+        if (btnRand != null) btnRand.setMessage(getModeLabel(
+                "gui.lastsongofelysian_music_add_on.shuffle", RadioPlayback.Mode.SHUFFLE));
+        if (btnLoop != null) btnLoop.setMessage(getModeLabel(
+                "gui.lastsongofelysian_music_add_on.repeat_one", RadioPlayback.Mode.LOOP_ONE));
     }
     
-    private Component getModeLabel(String base, RadioPlayback.Mode mode) {
-        return Component.literal((RadioPlayback.getCurrentMode() == mode ? "● " : "○ ") + base);
+    private Component getModeLabel(String translationKey, RadioPlayback.Mode mode) {
+        Component label = Component.translatable(translationKey);
+        return RadioPlayback.getCurrentMode() == mode
+                ? Component.literal("[").append(label).append("]")
+                : label;
     }
     
     private void clampSelection() {
@@ -201,36 +218,30 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
     @Override
     protected void renderBg(GuiGraphics g, float pt, int mx, int my) {
         int x = leftPos, y = topPos;
-        g.fill(x, y, x + WIDTH, y + HEIGHT, 0xF51A1523);
-        g.fill(x + 2, y + 2, x + WIDTH - 2, y + 28, 0xFF2C2138);
-        g.fill(x + 2, y + 28, x + WIDTH - 2, y + 29, 0xFF8D68B3);
-        g.renderOutline(x, y, WIDTH, HEIGHT, 0xFFB38BD5);
-        g.renderOutline(x + 4, y + 4, WIDTH - 8, HEIGHT - 8, 0x553A2C48);
+        drawVanillaPanel(g, x, y, WIDTH, HEIGHT);
 
-        g.fill(x + 14, y + 38, x + 90, y + 143, 0xB522192B);
-        g.renderOutline(x + 14, y + 38, 76, 105, 0x887E6096);
-        g.fill(x + 22, y + 46, x + 82, y + 86, 0xFF100D16);
-        renderSelectedCover(g, x + 28, y + 42);
-        drawSlot(g, x + 42, y + 95);
+        // Album art and the physical disc input occupy the left-hand machine area.
+        drawInset(g, x + 8, y + 18, 54, 50);
+        renderSelectedCover(g, x + 11, y + 19);
+        drawSlot(g, x + 24, y + 82);
 
         int lbx = x + LIST_X, lby = y + LIST_Y;
         int lbh = MAX_ROWS * ROW_H;
-        g.fill(lbx, lby, lbx + LIST_W, lby + lbh, 0xD0100C16);
-        g.renderOutline(lbx, lby, LIST_W, lbh, 0x886E5585);
-        g.enableScissor(lbx + 1, lby + 1, lbx + LIST_W - 1, lby + lbh - 1);
+        drawInset(g, lbx, lby, LIST_W, lbh);
+        g.enableScissor(lbx + 2, lby + 2, lbx + LIST_W - 2, lby + lbh - 2);
         int end = Math.min(songList.size(), scroll + MAX_ROWS);
         for (int i = scroll; i < end; i++) {
             int ry = lby + (i - scroll) * ROW_H;
             int rx = lbx;
             boolean sel = (i == selected);
             boolean hover = mx >= rx && mx < rx + LIST_W && my >= ry && my < ry + ROW_H;
-            if (sel) g.fill(rx + 1, ry, rx + LIST_W - 1, ry + ROW_H, 0xAA4C3561);
-            else if (hover) g.fill(rx + 1, ry, rx + LIST_W - 1, ry + ROW_H, 0x553C2D48);
-            if (i > scroll) g.fill(rx + 8, ry, rx + LIST_W - 8, ry + 1, 0x332F2438);
+            if (sel) g.fill(rx + 2, ry + 1, rx + LIST_W - 2, ry + ROW_H, 0xFFC6C6C6);
+            else if (hover) g.fill(rx + 2, ry + 1, rx + LIST_W - 2, ry + ROW_H, 0xFFA0A0A0);
+            if (i > scroll) g.fill(rx + 4, ry, rx + LIST_W - 4, ry + 1, PANEL_SHADOW);
 
             String sid = songList.get(i);
             if (CustomSongManager.isCustom(sid)) {
-                g.drawString(font, "♪", rx + 8, ry + 5, ACCENT, false);
+                g.drawString(font, "♪", rx + 8, ry + 5, TEXT, false);
             } else {
                 ItemStack disc = RadioSongs.disc(sid);
                 if (!disc.isEmpty()) g.renderItem(disc, rx + 4, ry + 1);
@@ -241,7 +252,7 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
             String txt = font.plainSubstrByWidth(name.getString(), LIST_W - 52);
             if (!txt.equals(name.getString())) txt += "…";
             g.drawString(font, txt, rx + 25, ry + 5, sel ? TEXT : TEXT_DIM, false);
-            if (RadioPlayback.isPlaying(sid)) g.drawString(font, "♫", rx + LIST_W - 17, ry + 5, GOLD, false);
+            if (RadioPlayback.isPlaying(sid)) g.drawString(font, ">", rx + LIST_W - 14, ry + 5, PLAYING, false);
         }
         g.disableScissor();
 
@@ -250,18 +261,16 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
             int hs = Math.max(12, lbh * MAX_ROWS / songList.size());
             int maxScroll = songList.size() - MAX_ROWS;
             int hy = lby + (lbh - hs) * scroll / Math.max(1, maxScroll);
-            g.fill(sbx, lby + 2, sbx + 2, lby + lbh - 2, 0x66463852);
-            g.fill(sbx - 1, hy, sbx + 3, hy + hs, 0xFFB38BD5);
+            g.fill(sbx, lby + 2, sbx + 2, lby + lbh - 2, PANEL_SHADOW);
+            drawRaised(g, sbx - 2, hy, 6, hs);
         }
 
-        g.fill(x + 92, y + 198, x + 268, y + 280, 0x77201928);
-        g.renderOutline(x + 92, y + 198, 176, 82, 0x665A466A);
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
-                drawSlot(g, x + 98 + column * 18, y + 201 + row * 18);
+                drawSlot(g, x + 47 + column * 18, y + 190 + row * 18);
             }
         }
-        for (int column = 0; column < 9; column++) drawSlot(g, x + 98 + column * 18, y + 259);
+        for (int column = 0; column < 9; column++) drawSlot(g, x + 47 + column * 18, y + 248);
     }
 
     private void renderSelectedCover(GuiGraphics g, int x, int y) {
@@ -284,23 +293,46 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
     }
 
     private void drawSlot(GuiGraphics g, int x, int y) {
-        g.fill(x, y, x + 18, y + 18, 0xFF352A40);
-        g.fill(x + 1, y + 1, x + 17, y + 17, 0xFF17121D);
+        g.fill(x, y, x + 18, y + 18, SLOT);
+        g.fill(x, y, x + 18, y + 1, PANEL_SHADOW);
+        g.fill(x, y, x + 1, y + 18, PANEL_SHADOW);
+        g.fill(x, y + 17, x + 18, y + 18, PANEL_LIGHT);
+        g.fill(x + 17, y, x + 18, y + 18, PANEL_LIGHT);
+    }
+
+    private void drawVanillaPanel(GuiGraphics g, int x, int y, int width, int height) {
+        g.fill(x, y, x + width, y + height, PANEL);
+        g.fill(x, y, x + width, y + 2, PANEL_LIGHT);
+        g.fill(x, y, x + 2, y + height, PANEL_LIGHT);
+        g.fill(x, y + height - 2, x + width, y + height, PANEL_SHADOW);
+        g.fill(x + width - 2, y, x + width, y + height, PANEL_SHADOW);
+        g.renderOutline(x + 2, y + 2, width - 4, height - 4, 0xFFAAAAAA);
+    }
+
+    private void drawInset(GuiGraphics g, int x, int y, int width, int height) {
+        g.fill(x, y, x + width, y + height, SLOT);
+        g.fill(x, y, x + width, y + 2, PANEL_SHADOW);
+        g.fill(x, y, x + 2, y + height, PANEL_SHADOW);
+        g.fill(x, y + height - 2, x + width, y + height, PANEL_LIGHT);
+        g.fill(x + width - 2, y, x + width, y + height, PANEL_LIGHT);
+    }
+
+    private void drawRaised(GuiGraphics g, int x, int y, int width, int height) {
+        g.fill(x, y, x + width, y + height, PANEL);
+        g.fill(x, y, x + width, y + 1, PANEL_LIGHT);
+        g.fill(x, y, x + 1, y + height, PANEL_LIGHT);
+        g.fill(x, y + height - 1, x + width, y + height, PANEL_SHADOW);
+        g.fill(x + width - 1, y, x + width, y + height, PANEL_SHADOW);
     }
 
     @Override
     protected void renderLabels(GuiGraphics g, int mouseX, int mouseY) {
-        g.drawCenteredString(font, title, imageWidth / 2, 10, TEXT);
-        g.drawString(font, "曲目列表  ·  " + songList.size() + " 首", LIST_X, 31, ACCENT, false);
-        g.drawString(font, "放入唱片", 26, 87, TEXT_DIM, false);
-        String current = RadioPlayback.getCurrentSong();
-        String status = current == null ? "尚未播放" : songTitle(current);
-        g.drawCenteredString(font, font.plainSubstrByWidth(status, 70), 52, 146,
-                current == null ? TEXT_DIM : GOLD);
-    }
-
-    private String songTitle(String id) {
-        return CustomSongManager.isCustom(id) ? CustomSongManager.title(id) : RadioSongs.title(id).getString();
+        g.drawString(font, title, 8, 6, TEXT, false);
+        g.drawString(font, Component.translatable("gui.lastsongofelysian_music_add_on.playlist", songList.size()),
+                LIST_X, 19, TEXT, false);
+        g.drawString(font, Component.translatable("gui.lastsongofelysian_music_add_on.insert_disc"),
+                8, 72, TEXT, false);
+        g.drawString(font, playerInventoryTitle, 47, 179, TEXT, false);
     }
 
     private static final class VolumeSlider extends AbstractSliderButton {
@@ -311,7 +343,8 @@ public final class RadioScreen extends AbstractContainerScreen<RadioMenu> {
 
         @Override
         protected void updateMessage() {
-            setMessage(Component.literal("音量 " + Math.round(value * 100.0D) + "%"));
+            setMessage(Component.translatable("gui.lastsongofelysian_music_add_on.volume_percent",
+                    Math.round(value * 100.0D)));
         }
 
         @Override

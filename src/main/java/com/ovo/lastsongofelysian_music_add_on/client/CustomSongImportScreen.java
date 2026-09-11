@@ -10,6 +10,11 @@ import org.lwjgl.util.tinyfd.TinyFileDialogs;
 import java.nio.file.Path;
 
 public final class CustomSongImportScreen extends Screen {
+    private static final int PANEL = 0xFFC6C6C6;
+    private static final int PANEL_LIGHT = 0xFFFFFFFF;
+    private static final int PANEL_SHADOW = 0xFF555555;
+    private static final int TEXT = 0xFF404040;
+
     private final RadioScreen parent;
     private EditBox nameBox;
     private Path oggPath;
@@ -129,25 +134,36 @@ public final class CustomSongImportScreen extends Screen {
         renderBackground(graphics);
         int centerX = width / 2;
         int top = height / 2 - 105;
-        graphics.fill(centerX - 136, top, centerX + 136, top + 210, 0xF51A1523);
-        graphics.fill(centerX - 134, top + 2, centerX + 134, top + 34, 0xFF2C2138);
-        graphics.fill(centerX - 134, top + 34, centerX + 134, top + 35, 0xFF8D68B3);
-        graphics.renderOutline(centerX - 136, top, 272, 210, 0xFFB38BD5);
-        graphics.renderOutline(centerX - 132, top + 4, 264, 202, 0x553A2C48);
-        graphics.drawCenteredString(font, title, centerX, top + 13, 0xFFF5EEFF);
-        graphics.drawString(font, "曲目名称", centerX - 116, top + 38, 0xFFDCCDE9, false);
+        drawVanillaPanel(graphics, centerX - 136, top, 272, 210);
+        graphics.drawCenteredString(font, title, centerX, top + 13, TEXT);
+        graphics.drawString(font, "曲目名称", centerX - 116, top + 38, TEXT, false);
 
-        graphics.fill(centerX - 116, top + 111, centerX - 4, top + 140, 0x8822192B);
-        graphics.fill(centerX + 4, top + 111, centerX + 116, top + 140, 0x8822192B);
-        graphics.renderOutline(centerX - 116, top + 111, 112, 29, oggPath == null ? 0x665A466A : 0xFF66C28A);
-        graphics.renderOutline(centerX + 4, top + 111, 112, 29, coverPath == null ? 0x665A466A : 0xFF66C28A);
+        drawInset(graphics, centerX - 116, top + 111, 112, 29);
+        drawInset(graphics, centerX + 4, top + 111, 112, 29);
         String audioName = oggPath == null ? "尚未选择音乐" : oggPath.getFileName().toString();
         String coverName = coverPath == null ? "尚未选择封面" : coverPath.getFileName().toString();
         graphics.drawCenteredString(font, font.plainSubstrByWidth(audioName, 102), centerX - 60, top + 121,
-                oggPath == null ? 0xFF94859F : 0xFF9BE0B7);
+                oggPath == null ? 0xFF606060 : 0xFF208020);
         graphics.drawCenteredString(font, font.plainSubstrByWidth(coverName, 102), centerX + 60, top + 121,
-                coverPath == null ? 0xFF94859F : 0xFF9BE0B7);
+                coverPath == null ? 0xFF606060 : 0xFF208020);
         graphics.drawCenteredString(font, message, centerX, top + 190, messageColor);
         super.render(graphics, mouseX, mouseY, partialTick);
+    }
+
+    private void drawVanillaPanel(GuiGraphics graphics, int x, int y, int width, int height) {
+        graphics.fill(x, y, x + width, y + height, PANEL);
+        graphics.fill(x, y, x + width, y + 2, PANEL_LIGHT);
+        graphics.fill(x, y, x + 2, y + height, PANEL_LIGHT);
+        graphics.fill(x, y + height - 2, x + width, y + height, PANEL_SHADOW);
+        graphics.fill(x + width - 2, y, x + width, y + height, PANEL_SHADOW);
+        graphics.renderOutline(x + 2, y + 2, width - 4, height - 4, 0xFFAAAAAA);
+    }
+
+    private void drawInset(GuiGraphics graphics, int x, int y, int width, int height) {
+        graphics.fill(x, y, x + width, y + height, 0xFF8B8B8B);
+        graphics.fill(x, y, x + width, y + 2, PANEL_SHADOW);
+        graphics.fill(x, y, x + 2, y + height, PANEL_SHADOW);
+        graphics.fill(x, y + height - 2, x + width, y + height, PANEL_LIGHT);
+        graphics.fill(x + width - 2, y, x + width, y + height, PANEL_LIGHT);
     }
 }
