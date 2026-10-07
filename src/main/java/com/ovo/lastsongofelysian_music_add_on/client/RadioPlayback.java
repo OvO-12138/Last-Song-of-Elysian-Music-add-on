@@ -116,11 +116,24 @@ public final class RadioPlayback {
         builtInStartGraceTicks = 0;
     }
 
+    public static void resetSession() {
+        stop();
+        playlist.clear();
+        sortOrderIndex = 0;
+    }
+
     public static boolean isPlaying(String songId) {
         return songId != null && currentSong != null && songId.equals(currentSong);
     }
 
     public static void tick() {
+        // The sound manager invalidates world sounds while disconnecting. Without
+        // this guard that looks like a naturally finished track and autoPlayNext()
+        // starts another song on the title screen.
+        if (Minecraft.getInstance().level == null) {
+            if (currentSound != null || currentSong != null || customPlaying) stop();
+            return;
+        }
         if (currentSound == null || currentSong == null || customPlaying) return;
         if (builtInStartGraceTicks > 0) {
             builtInStartGraceTicks--;

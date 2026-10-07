@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:jukebox"
+    }
+  ],
+  "result": {
+    "item": "lastsongofelysian_music_add_on:radio"
+  }
+}

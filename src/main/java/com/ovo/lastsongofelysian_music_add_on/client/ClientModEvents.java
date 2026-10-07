@@ -5,6 +5,7 @@ import com.ovo.lastsongofelysian_music_add_on.menu.RadioMenu;
 import com.ovo.lastsongofelysian_music_add_on.registry.ModMenus;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,6 +32,11 @@ public final class ClientModEvents {
         @SubscribeEvent
         public static void onClientTick(TickEvent.ClientTickEvent event) {
             if (event.phase == TickEvent.Phase.END) RadioPlayback.tick();
+        }
+
+        @SubscribeEvent
+        public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event) {
+            RadioPlayback.resetSession();
         }
     }
 }
