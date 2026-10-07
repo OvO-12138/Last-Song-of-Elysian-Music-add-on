@@ -1,1 +1,2 @@
 1.0.3: adds collect method for da capo
+1.0.5: 修bug和音响的获取方式
